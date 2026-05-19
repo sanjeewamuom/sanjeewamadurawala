@@ -1,0 +1,18 @@
+---
+import { siteData } from "../content.config";
+---
+
+<div class="skill-groups">
+  {
+    siteData.skillGroups.map((group) => (
+      <div class="skill-group">
+        <h3>{group.name}</h3>
+        <ul class="chips">
+          {group.skills.map((skill) => (
+            <li class="chip">{skill}</li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>

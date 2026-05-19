@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SkillGrid from "../components/SkillGrid.astro";
+import { siteData } from "../content.config";
+import { asset } from "../lib/urls";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="About" description={`About ${siteData.name} — Data Analytics Engineer and Power BI specialist.`}>
+  <article class="section">
+    <div class="container prose">
+      <header class="section__header">
+        <h1>About me</h1>
+      </header>
+
+      <p>
+        Hello, I'm {siteData.name}, a Data Analytics Engineer and BI specialist based in Sri
+        Lanka. I focus on enterprise Power BI, Microsoft Fabric, operational analytics, and
+        AI-assisted development workflows that help teams make faster, better decisions.
+      </p>
+
+      <h2>Current focus</h2>
+      <p>
+        I am a <strong>Power BI Engineer</strong> at Raketman (Vandermarliere Family of
+        Cigars, Belgium), where I own and deliver reporting across supply chain, logistics,
+        inventory, production, and finance—from SAP-integrated operational dashboards to
+        group-level visibility for leadership and shop-floor teams.
+      </p>
+
+      <h2>Previous experience</h2>
+      <p>
+        Before that, I spent over two years at <strong>Dialog Network Services</strong> in
+        Analytics &amp; Automation, building operational analytics for telecom
+        infrastructure, disaster recovery, SLA management, and workforce operations.
+      </p>
+
+      <h2>Background</h2>
+      <p>
+        My path started in electrical engineering (<strong>BSc, University of Moratuwa</strong>,
+        Second Class Upper, GPA 3.64) and plant operations across power generation and
+        manufacturing—including 3.3 MW biomass and 100 MW thermal plants—before moving fully
+        into data and BI. I completed an <strong>OTHM Level 7 Diploma in Data Science</strong> in
+        2024.
+      </p>
+
+      <h2>Certifications</h2>
+      <ul>
+        <li>DP-600 Fabric Analytics Engineer Associate — In progress</li>
+      </ul>
+
+      <h2>Memberships &amp; publications</h2>
+      <ul>
+        <li>AMIE (SL) — Institution of Engineers Sri Lanka</li>
+        <li>AENG — Engineering Council Sri Lanka</li>
+        <li>Published paper at ICIAFS 2014 on harmonic mitigation systems</li>
+      </ul>
+
+      <h2>Skills</h2>
+      <SkillGrid />
+
+      <div class="hero__actions" style="margin-top: 2rem;">
+        <a href={`${base}resume/`} class="btn btn--primary">View resume</a>
+        <a href={`${base}#work`} class="btn btn--ghost">See projects</a>
+        <a href={asset("cv/Sanjeewa_Madurawala_CV.pdf")} class="btn btn--ghost" download>
+          Download CV
+        </a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

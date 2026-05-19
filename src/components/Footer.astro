@@ -1,0 +1,38 @@
+---
+import { siteData } from "../content.config";
+import { asset } from "../lib/urls";
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <section>
+        <h3>Location</h3>
+        <p>{siteData.location}</p>
+      </section>
+      <section>
+        <h3>Phone</h3>
+        <p><a href={siteData.phoneHref}>{siteData.phone}</a></p>
+      </section>
+      <section>
+        <h3>Email</h3>
+        <p><a href={`mailto:${siteData.email}`}>{siteData.email}</a></p>
+      </section>
+      <section>
+        <h3>Resume</h3>
+        <p>
+          <a href={asset("cv/Sanjeewa_Madurawala_CV.pdf")} download>Download CV (PDF)</a>
+        </p>
+      </section>
+      <section>
+        <h3>Social</h3>
+        <p>
+          <a href={siteData.social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          ·
+          <a href={siteData.social.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
+      </section>
+    </div>
+    <p class="site-footer__bottom">&copy; {new Date().getFullYear()} {siteData.name}</p>
+  </div>
+</footer>

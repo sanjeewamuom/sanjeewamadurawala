@@ -1,0 +1,62 @@
+{
+  "name": "Sanjeewa Madurawala",
+  "title": "Data Analytics Engineer | BI Engineer | Power BI & Fabric Specialist",
+  "tagline": "Enterprise Power BI, Microsoft Fabric, operational analytics, and AI-assisted BI development across telecom, manufacturing, and supply chain.",
+  "location": "Alawwa, Sri Lanka",
+  "phone": "(+94) 74 161 8441",
+  "phoneHref": "tel:+94741618441",
+  "email": "masnmadurawala@gmail.com",
+  "cvPath": "/sanjeewamadurawala/cv/Sanjeewa_Madurawala_CV.pdf",
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/sanjeewamadurawala/",
+    "github": "https://github.com/sanjeewamuom"
+  },
+  "impactMetrics": [
+    { "value": "20+", "label": "Enterprise Power BI solutions owned & delivered" },
+    { "value": "SAP", "label": "Integrated reporting & Excel automation" },
+    { "value": "3+", "label": "Years in data & BI engineering" },
+    { "value": "DP-600", "label": "Fabric Analytics Engineer (in progress)" }
+  ],
+  "skillGroups": [
+    {
+      "name": "BI & Analytics",
+      "skills": [
+        "Power BI",
+        "DAX",
+        "Power Query",
+        "Microsoft Fabric",
+        "ETL & Data Modeling",
+        "Operational Analytics"
+      ]
+    },
+    {
+      "name": "Data & Engineering",
+      "skills": ["SQL", "Python", "Spark", "SAP Operational Reporting"]
+    },
+    {
+      "name": "Tools & Workflow",
+      "skills": [
+        "Tabular Editor",
+        "DAX Studio",
+        "Measure Killer",
+        "Git",
+        "JIRA",
+        "Confluence",
+        "Cursor",
+        "Claude Code"
+      ]
+    },
+    {
+      "name": "Domains",
+      "skills": [
+        "Telecom & Manufacturing Analytics",
+        "Supply Chain & Logistics",
+        "Executive Reporting"
+      ]
+    }
+  ],
+  "meta": {
+    "description": "Portfolio of Sanjeewa Madurawala — Data Analytics Engineer specializing in enterprise Power BI, Microsoft Fabric, SAP-integrated reporting, and operational analytics.",
+    "ogImage": "images/pic01.jpg"
+  }
+}

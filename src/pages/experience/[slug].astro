@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("experience");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, role, company, period, industry, stack, outcomes } = entry.data;
+---
+
+<BaseLayout title={title} description={entry.data.summary}>
+  <article class="section">
+    <div class="container prose">
+      <header class="section__header">
+        <h1>{title}</h1>
+        <p class="case-study__meta">
+          <strong>{role}</strong> · {company}<br />
+          {period} · {industry}
+        </p>
+      </header>
+
+      <aside class="case-study__disclaimer" role="note">
+        This case study describes methodology, solution structure, and outcomes only. Work
+        products contain confidential client data and are not displayed on this portfolio.
+      </aside>
+
+      <h2>Technology stack</h2>
+      <ul class="chips" style="list-style: none; padding: 0;">
+        {stack.map((item) => (
+          <li class="chip" style="display: inline-block;">{item}</li>
+        ))}
+      </ul>
+
+      <h2>Key outcomes</h2>
+      <ul>
+        {outcomes.map((o) => (
+          <li>{o}</li>
+        ))}
+      </ul>
+
+      <Content />
+
+      <p style="margin-top: 2rem;">
+        <a href={`${import.meta.env.BASE_URL}`}>← Back to home</a>
+        ·
+        <a href={`${import.meta.env.BASE_URL}resume/`}>View resume</a>
+      </p>
+    </div>
+  </article>
+</BaseLayout>

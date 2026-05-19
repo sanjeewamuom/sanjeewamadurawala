@@ -1,0 +1,49 @@
+---
+import { siteData } from "../content.config";
+import { asset } from "../lib/urls";
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/#work", label: "Work" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/about/", label: "About" },
+  { href: "/resume/", label: "Resume" },
+];
+
+const currentPath = Astro.url.pathname;
+const base = import.meta.env.BASE_URL;
+
+function navHref(href: string) {
+  if (href.startsWith("/#")) return `${base}${href.slice(1)}`;
+  return `${base}${href.replace(/^\//, "")}`;
+}
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href={base} class="site-logo">{siteData.name.split(" ")[0]}</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle menu">
+      Menu
+    </button>
+    <nav class="site-nav" aria-label="Main">
+      {
+        navItems.map((item) => {
+          const href = navHref(item.href);
+          const isActive =
+            item.href === "/"
+              ? currentPath === base || currentPath === `${base}index.html`
+              : !item.href.includes("#") &&
+                currentPath.includes(item.href.replace(/^\//, "").replace(/\/$/, ""));
+          return (
+            <a href={href} aria-current={isActive ? "page" : undefined}>
+              {item.label}
+            </a>
+          );
+        })
+      }
+      <a href={asset("cv/Sanjeewa_Madurawala_CV.pdf")} class="btn btn--primary" download>
+        Download CV
+      </a>
+    </nav>
+  </div>
+</header>

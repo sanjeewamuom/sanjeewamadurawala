@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SkillGrid from "../components/SkillGrid.astro";
+import { siteData } from "../content.config";
+import { getCollection } from "astro:content";
+import { asset } from "../lib/urls";
+
+const experience = (await getCollection("experience")).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Resume" description={`Resume highlights for ${siteData.name}.`}>
+  <article class="section">
+    <div class="container prose">
+      <header class="section__header">
+        <h1>Resume</h1>
+        <p>{siteData.title}</p>
+        <div class="hero__actions">
+          <a href={asset("cv/Sanjeewa_Madurawala_CV.pdf")} class="btn btn--primary" download>
+            Download full CV (PDF)
+          </a>
+          <a
+            href={siteData.social.linkedin}
+            class="btn btn--ghost"
+            target="_blank"
+            rel="noopener noreferrer">LinkedIn</a
+          >
+        </div>
+      </header>
+
+      <h2>Profile</h2>
+      <p>
+        Power BI &amp; Data Analytics Engineer with 3+ years of experience specializing in
+        enterprise Power BI, Microsoft Fabric, operational analytics, and AI-assisted BI
+        development workflows. Experienced in delivering scalable dashboards that support
+        strategic decision making across telecom, manufacturing, logistics, finance, and
+        executive reporting—with strong focus on operational efficiency, automation, and
+        business decision support.
+      </p>
+
+      <h2>Experience</h2>
+      <ul class="timeline">
+        {
+          experience.map((entry) => (
+            <li class="timeline__item">
+              <p class="timeline__period">{entry.data.period}</p>
+              <p class="timeline__role">{entry.data.role}</p>
+              <p class="timeline__company">{entry.data.company}</p>
+              <p>{entry.data.summary}</p>
+              <p>
+                <a href={`${base}experience/${entry.id}/`}>Read case study →</a>
+              </p>
+            </li>
+          ))
+        }
+        <li class="timeline__item">
+          <p class="timeline__period">May 2015 – Jan 2023</p>
+          <p class="timeline__role">Electrical Engineer / Plant Engineer</p>
+          <p class="timeline__company">Multiple firms — Sri Lanka</p>
+          <p>
+            Renewable energy, power generation, transmission, and manufacturing—including O&amp;M
+            for 3.3 MW biomass and 100 MW thermal power plants.
+          </p>
+        </li>
+      </ul>
+
+      <h2>Education</h2>
+      <dl>
+        <dt><strong>BSc (Hons) Engineering — Electrical Engineering</strong></dt>
+        <dd>University of Moratuwa · 2010–2015 · Second Class Upper · GPA 3.64</dd>
+        <dt><strong>OTHM Level 7 Diploma in Data Science</strong></dt>
+        <dd>OTHM, UK · 2024</dd>
+      </dl>
+
+      <h2>Certifications</h2>
+      <ul>
+        <li>DP-600 Fabric Analytics Engineer Associate — In progress</li>
+      </ul>
+
+      <h2>Skills</h2>
+      <SkillGrid />
+
+      <h2>Memberships &amp; publications</h2>
+      <ul>
+        <li>AMIE (SL) — Institution of Engineers Sri Lanka</li>
+        <li>AENG — Engineering Council Sri Lanka</li>
+        <li>Published paper at ICIAFS 2014 on harmonic mitigation systems</li>
+      </ul>
+    </div>
+  </article>
+</BaseLayout>

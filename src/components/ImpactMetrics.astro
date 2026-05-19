@@ -1,0 +1,14 @@
+---
+import { siteData } from "../content.config";
+---
+
+<div class="metrics">
+  {
+    siteData.impactMetrics.map((m) => (
+      <article class="metric">
+        <p class="metric__value">{m.value}</p>
+        <p class="metric__label">{m.label}</p>
+      </article>
+    ))
+  }
+</div>

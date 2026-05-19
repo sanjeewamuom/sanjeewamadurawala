@@ -1,0 +1,133 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ImpactMetrics from "../components/ImpactMetrics.astro";
+import SkillGrid from "../components/SkillGrid.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import ExperienceCard from "../components/ExperienceCard.astro";
+import { siteData } from "../content.config";
+import { getCollection } from "astro:content";
+import { asset } from "../lib/urls";
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const experience = (await getCollection("experience")).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const featuredExp = experience[0];
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="container">
+      <p class="hero__eyebrow">Portfolio</p>
+      <h1>{siteData.name}</h1>
+      <p class="hero__title">{siteData.title}</p>
+      <p class="hero__tagline">{siteData.tagline}</p>
+      <div class="hero__actions">
+        <a href={asset("cv/Sanjeewa_Madurawala_CV.pdf")} class="btn btn--primary" download>
+          Download CV
+        </a>
+        <a
+          href={siteData.social.linkedin}
+          class="btn btn--outline"
+          target="_blank"
+          rel="noopener noreferrer">LinkedIn</a
+        >
+        <a
+          href={siteData.social.github}
+          class="btn btn--outline"
+          target="_blank"
+          rel="noopener noreferrer">GitHub</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <ImpactMetrics />
+    </div>
+  </section>
+
+  {
+    featuredExp && (
+      <section class="section section--alt">
+        <div class="container">
+          <div class="featured-banner">
+            <div>
+              <h2>Featured experience</h2>
+              <p>{featuredExp.data.summary}</p>
+            </div>
+            <a
+              href={`${base}experience/${featuredExp.id}/`}
+              class="btn btn--primary"
+            >
+              Read case study
+            </a>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section" id="experience">
+    <div class="container">
+      <header class="section__header">
+        <h2>Enterprise experience</h2>
+        <p>
+          Text-only case studies describing approach, architecture, and outcomes—no
+          confidential client data or dashboard screenshots.
+        </p>
+      </header>
+      <div class="card-grid">
+        {experience.map((entry) => <ExperienceCard entry={entry} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <header class="section__header">
+        <h2>Core skills</h2>
+        <p>Enterprise Power BI, Fabric, SAP reporting, and AI-assisted BI development.</p>
+      </header>
+      <SkillGrid />
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="container">
+      <header class="section__header">
+        <h2>Public projects</h2>
+        <p>Portfolio work with screenshots and demos—learning projects and challenge submissions.</p>
+      </header>
+      <div class="card-grid">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="contact">
+    <div class="container contact-strip">
+      <h2>Get in touch</h2>
+      <p>
+        Open to new opportunities in data analytics, BI engineering, and Power BI / Fabric
+        roles. Reach out via email or LinkedIn.
+      </p>
+      <div class="contact-strip__links">
+        <a href={`mailto:${siteData.email}`} class="btn btn--primary">Email me</a>
+        <a
+          href={siteData.social.linkedin}
+          class="btn btn--ghost"
+          target="_blank"
+          rel="noopener noreferrer">LinkedIn</a
+        >
+        <a href={asset("cv/Sanjeewa_Madurawala_CV.pdf")} class="btn btn--ghost" download>
+          Download CV
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
